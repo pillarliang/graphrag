@@ -306,7 +306,7 @@ class LocalSearchMixedContext(LocalContextBuilder):
         max_tokens: int = 8000,
         return_candidate_context: bool = False,
         column_delimiter: str = "|",
-        context_name: str = "Sources",
+        context_name: str = "TextUnits",
     ) -> tuple[str, dict[str, pd.DataFrame]]:
         """Rank matching text units and add them to the context window until it hits the max_tokens limit."""
         if len(selected_entities) == 0 or len(self.text_units) == 0:

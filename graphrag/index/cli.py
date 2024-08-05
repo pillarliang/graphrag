@@ -70,6 +70,7 @@ def redact(input: dict) -> str:
 
 def index_cli(
     root: str,
+    dataset,
     init: bool,
     verbose: bool,
     resume: str | None,
@@ -88,7 +89,7 @@ def index_cli(
     progress_reporter = _get_progress_reporter(reporter)
     if init:
         _initialize_project_at(root, progress_reporter)
-        sys.exit(0)
+        return
     if overlay_defaults:
         pipeline_config: str | PipelineConfig = _create_default_config(
             root, config, verbose, dryrun or False, progress_reporter
@@ -122,6 +123,7 @@ def index_cli(
             nonlocal encountered_errors
             async for output in run_pipeline_with_config(
                 pipeline_config,
+                dataset=dataset,
                 run_id=run_id,
                 memory_profile=memprofile,
                 cache=cache,
@@ -167,8 +169,8 @@ def index_cli(
     else:
         progress_reporter.success("All workflows completed successfully.")
 
-    if cli:
-        sys.exit(1 if encountered_errors else 0)
+    # if cli:
+    #     sys.exit(1 if encountered_errors else 0)
 
 
 def _initialize_project_at(path: str, reporter: ProgressReporter) -> None:
@@ -258,11 +260,12 @@ def _create_default_config(
 
 def _read_config_parameters(root: str, config: str | None, reporter: ProgressReporter):
     _root = Path(root)
-    settings_yaml = (
-        Path(config)
-        if config and Path(config).suffix in [".yaml", ".yml"]
-        else _root / "settings.yaml"
-    )
+    # settings_yaml = (
+    #     Path(config)
+    #     if config and Path(config).suffix in [".yaml", ".yml"]
+    #     else _root / "settings.yaml"
+    # )
+    settings_yaml = Path("/Users/liangzhu/Documents/dev/graph-rag-agent/graphrag/settings.yaml")
     if not settings_yaml.exists():
         settings_yaml = _root / "settings.yml"
     settings_json = (

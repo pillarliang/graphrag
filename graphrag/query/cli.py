@@ -56,9 +56,10 @@ def __get_embedding_description_store(
 def run_global_search(
     data_dir: str | None,
     root_dir: str | None,
-    community_level: int,
-    response_type: str,
     query: str,
+    community_level: int = 2,
+    response_type: str = "Multiple Paragraphs",
+
 ):
     """Run a global search with the given query."""
     data_dir, root_dir, config = _configure_paths_and_settings(data_dir, root_dir)
@@ -94,9 +95,9 @@ def run_global_search(
 def run_local_search(
     data_dir: str | None,
     root_dir: str | None,
-    community_level: int,
-    response_type: str,
     query: str,
+    community_level: int = 2,
+    response_type: str = "Multiple Paragraphs",
 ):
     """Run a local search with the given query."""
     data_dir, root_dir, config = _configure_paths_and_settings(data_dir, root_dir)
@@ -151,8 +152,8 @@ def run_local_search(
     )
 
     result = search_engine.search(query=query)
-    reporter.success(f"Local Search Response: {result.response}")
-    return result.response
+    reporter.success(f"Local Search : {result.response}")
+    return result
 
 
 def _configure_paths_and_settings(

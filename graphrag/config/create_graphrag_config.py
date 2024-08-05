@@ -65,7 +65,7 @@ def create_graphrag_config(
     """Load Configuration Parameters from a dictionary."""
     values = values or {}
     root_dir = root_dir or str(Path.cwd())
-    env = _make_env(root_dir)
+    env = _make_env(root_dir) # TODO: 改为从固定文件中获取
     _token_replace(cast(dict, values))
     InputModelValidator.validate_python(values, strict=True)
 

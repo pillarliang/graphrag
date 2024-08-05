@@ -104,7 +104,7 @@ def _load_openai_completion_llm(
     return _create_openai_completion_llm(
         OpenAIConfiguration({
             **_get_base_config(config),
-            "model": config.get("model", "gpt-4-turbo-preview"),
+            "model": config.get("model", "gpt-4o-mini"),
             "deployment_name": config.get("deployment_name"),
             "temperature": config.get("temperature", 0.0),
             "frequency_penalty": config.get("frequency_penalty", 0),
@@ -129,7 +129,7 @@ def _load_openai_chat_llm(
         OpenAIConfiguration({
             # Set default values
             **_get_base_config(config),
-            "model": config.get("model", "gpt-4-turbo-preview"),
+            "model": config.get("model", "gpt-4o-mini"),
             "deployment_name": config.get("deployment_name"),
             "temperature": config.get("temperature", 0.0),
             "frequency_penalty": config.get("frequency_penalty", 0),

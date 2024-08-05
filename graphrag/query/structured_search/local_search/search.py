@@ -17,7 +17,7 @@ from graphrag.query.llm.base import BaseLLM, BaseLLMCallback
 from graphrag.query.llm.text_utils import num_tokens
 from graphrag.query.structured_search.base import BaseSearch, SearchResult
 from graphrag.query.structured_search.local_search.system_prompt import (
-    LOCAL_SEARCH_SYSTEM_PROMPT,
+    LOCAL_SEARCH_SYSTEM_PROMPT, INTERVIEW_PROMPT,
 )
 
 DEFAULT_LLM_PARAMS = {
@@ -36,7 +36,7 @@ class LocalSearch(BaseSearch):
         llm: BaseLLM,
         context_builder: LocalContextBuilder,
         token_encoder: tiktoken.Encoding | None = None,
-        system_prompt: str = LOCAL_SEARCH_SYSTEM_PROMPT,
+        system_prompt: str = INTERVIEW_PROMPT,
         response_type: str = "multiple paragraphs",
         callbacks: list[BaseLLMCallback] | None = None,
         llm_params: dict[str, Any] = DEFAULT_LLM_PARAMS,
